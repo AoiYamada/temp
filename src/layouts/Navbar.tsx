@@ -5,10 +5,7 @@ const navigation = ["Link 1", "Link 2", "Link 3", "Link 4"];
 
 const Navbar = () => {
   return (
-    <nav
-      className="w-full h-20 sticky top-0 flex flex-row justify-between items-center bg-white shadow-md"
-      style={{ zIndex: "9999" }}
-    >
+    <nav className="w-full h-20 sticky top-0 flex flex-row justify-between items-center bg-white shadow-md">
       <div className="h-full pl-16 flex justify-between items-center w-48">
         <img src="./assets/logo.png" alt="logo" />
       </div>
@@ -31,6 +28,7 @@ const Navbar = () => {
               className={`flex flex-col absolute p-4 rounded-md shadow-md lg:shadow-none bg-white lg:bg-inherit top-16 lg:top-auto right-5 w-auto lg:flex-row lg:gap-4 lg:items-center lg:justify-end${
                 open ? "" : " hidden lg:flex"
               }`}
+              style={{ zIndex: "9999" }}
             >
               {navigation.map((item) => (
                 <Menu.Item>
