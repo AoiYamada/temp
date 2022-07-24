@@ -5,7 +5,10 @@ const navigation = ["Link 1", "Link 2", "Link 3", "Link 4"];
 
 const Navbar = () => {
   return (
-    <nav className="w-full h-20 sticky top-0 flex flex-row justify-between items-center bg-white shadow-md">
+    <nav
+      className="w-full h-20 sticky top-0 flex flex-row justify-between items-center bg-white shadow-md"
+      style={{ zIndex: "9999" }}
+    >
       <div className="h-full pl-16 flex justify-between items-center w-48">
         <img src="./assets/logo.png" alt="logo" />
       </div>

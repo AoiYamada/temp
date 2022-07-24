@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App w-full h-full">
       <header className="w-full h-20 sticky top-0">
-        <Navbar></Navbar>
+        <Navbar />
       </header>
       <div className="w-full h-full flex flex-col justify-center items-center py-8">
         {/* Intro */}
