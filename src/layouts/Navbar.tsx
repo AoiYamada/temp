@@ -28,7 +28,6 @@ const Navbar = () => {
               className={`flex flex-col absolute p-4 rounded-md shadow-md lg:shadow-none bg-white lg:bg-inherit top-16 lg:top-auto right-5 w-auto lg:flex-row lg:gap-4 lg:items-center lg:justify-end${
                 open ? "" : " hidden lg:flex"
               }`}
-              style={{ zIndex: "9999" }}
             >
               {navigation.map((item) => (
                 <Menu.Item>

@@ -7,7 +7,7 @@ import Navbar from "./layouts/Navbar";
 function App() {
   return (
     <div className="App w-full h-full">
-      <header className="w-full h-20 sticky top-0">
+      <header className="w-full h-20 sticky top-0" style={{ zIndex: "9999" }}>
         <Navbar />
       </header>
       <div className="w-full h-full flex flex-col justify-center items-center py-8">
