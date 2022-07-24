@@ -174,7 +174,7 @@ function App() {
         </div>
 
         {/* ?? */}
-        <div className="w-full flex justify-center items-center px-8 bg-gray-200">
+        <div className="w-full flex justify-center items-center px-8 py-4 bg-gray-200">
           <Carousel className="max-w-7xl">
             <div>
               <img src="./assets/image02.png" />
