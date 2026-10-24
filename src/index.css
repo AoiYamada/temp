@@ -1,3 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * Tailwind v4 emits its styles inside cascade layers, and unlayered CSS always
+ * wins over layered CSS. Put the reset in the lowest layer so it keeps losing
+ * to Tailwind's preflight and utilities, as it did when it was imported first.
+ */
+@layer reset, theme, base, components, utilities;
+
+@import "@atlaskit/css-reset/dist/bundle.css" layer(reset);
+@import "tailwindcss";
+
+/*
+ * Tailwind v3's preflight reset `body { line-height: inherit }`, which kept the
+ * reset's `font` shorthand from setting the line height. v4 dropped that rule.
+ */
+@layer base {
+  body {
+    line-height: inherit;
+  }
+
+  /*
+   * Tailwind v4's preflight zeroes every margin with `*`, but v3 only did so for
+   * a fixed list of elements. Keep the reset's spacing for the ones outside it.
+   */
+  dd + dt,
+  li + li {
+    margin-top: var(--ds-space-050, 4px);
+  }
+
+  form,
+  table {
+    margin-top: var(--ds-space-150, 12px);
+  }
+}
