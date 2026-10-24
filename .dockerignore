@@ -1,0 +1,13 @@
+# Everything that is rebuilt inside the image or irrelevant to it.
+node_modules
+dist
+coverage
+.git
+.vscode
+.env*
+*.log
+Dockerfile
+compose.yaml
+.dockerignore
+README.md
+setup_log.md
