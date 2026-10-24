@@ -7,5 +7,22 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
+    coverage: {
+      provider: "v8",
+      include: ["src/**/*.{ts,tsx}"],
+      // Bootstrap and test plumbing, not logic worth measuring.
+      exclude: [
+        "src/index.tsx",
+        "src/setupTests.ts",
+        "src/vite-env.d.ts",
+        "src/**/*.test.{ts,tsx}",
+      ],
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80,
+      },
+    },
   },
 });

@@ -28,4 +28,28 @@ describe("Navbar", () => {
     await user.click(toggle);
     expect(menu).toHaveClass("hidden");
   });
+
+  it.each([
+    ["Link 1", "{ArrowDown}"],
+    ["Sign Up", "{End}"],
+  ])(
+    "highlights only %s when it is focused with the keyboard",
+    async (label, key) => {
+      const user = userEvent.setup();
+      render(<Navbar />);
+
+      await user.click(screen.getByRole("button", { name: /open main menu/i }));
+      await user.keyboard(key);
+
+      const entry = screen.getByRole("menuitem", { name: label });
+      const others = screen
+        .getAllByRole("menuitem")
+        .filter((item) => item !== entry);
+
+      expect(entry).toHaveClass("bg-gray-300");
+      for (const other of others) {
+        expect(other).toHaveClass("bg-white");
+      }
+    }
+  );
 });
