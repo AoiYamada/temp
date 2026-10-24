@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# template01
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Landing page template built with React 19, TypeScript, Vite and Tailwind CSS 4.
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+- Node.js 24 or newer
+- pnpm 12.15.0. The version is pinned in `package.json` (`packageManager`), so
+  `corepack enable` is enough to get the right one.
+- Docker, only if you want to run it in a container
 
-### `npm start`
+## Scripts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+pnpm install       # install dependencies
+pnpm dev           # dev server with hot reload, http://localhost:5173
+pnpm build         # type-check and build to dist/
+pnpm preview       # serve the production build locally
+pnpm test          # run the tests once
+pnpm test:watch    # run the tests in watch mode
+pnpm lint          # lint with ESLint
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Run with Docker
 
-### `npm test`
+```bash
+docker compose up --build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then open <http://localhost:8080>.
 
-### `npm run build`
+```bash
+PORT=3000 docker compose up --build   # use another host port
+docker compose up --build -d --wait   # run in the background until healthy
+docker compose down                   # stop and remove the container
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The image is built in two stages: Node installs the dependencies and builds the
+site, then an unprivileged nginx serves `dist/` on port 8080 inside the
+container. Unknown paths fall back to `index.html`, so client-side routes work
+on reload. See [Dockerfile](Dockerfile) and [nginx.conf](nginx.conf).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Notes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `src/index.css` loads `@atlaskit/css-reset` into its own cascade layer below
+  Tailwind's. Tailwind v4 emits layered CSS, and unlayered CSS would otherwise
+  override every utility class.
+- How the project was set up and migrated is recorded in
+  [setup_log.md](setup_log.md).
