@@ -4,9 +4,9 @@ Landing page template built with React 19, TypeScript, Vite and Tailwind CSS 4.
 
 ## Requirements
 
-- Node.js 24 or newer
-- pnpm 12.15.0. The version is pinned in `package.json` (`packageManager`), so
-  `corepack enable` is enough to get the right one.
+- Node.js, in the range given by `engines.node` in `package.json`
+- pnpm, at the version pinned by `packageManager` in `package.json`, so
+  `corepack enable` is enough to get the right one
 - Docker, only if you want to run it in a container
 
 ## Scripts
@@ -18,6 +18,7 @@ pnpm build         # type-check and build to dist/
 pnpm preview       # serve the production build locally
 pnpm test          # run the tests once
 pnpm test:watch    # run the tests in watch mode
+pnpm test:coverage # run the tests with coverage, fails below 80%
 pnpm lint          # lint with ESLint
 ```
 

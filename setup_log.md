@@ -91,11 +91,12 @@ pnpm add @headlessui/react @heroicons/react
 # Testing
 
 ```bash
-pnpm add -D vitest jsdom @testing-library/react @testing-library/dom \
-  @testing-library/jest-dom @testing-library/user-event
+pnpm add -D vitest @vitest/coverage-v8 jsdom @testing-library/react \
+  @testing-library/dom @testing-library/jest-dom @testing-library/user-event
 ```
 
-Configured in `vite.config.ts` (`test`) and `src/setupTests.ts`.
+Configured in `vite.config.ts` (`test`, including the 80% coverage thresholds)
+and `src/setupTests.ts`. `pnpm test:coverage` fails below the thresholds.
 
 # Linting
 
@@ -121,6 +122,9 @@ Done in October 2026. Things worth knowing if you hit them again:
 - **CRA to Vite.** `react-scripts` is deprecated. `index.html` moved from
   `public/` to the root, `%PUBLIC_URL%` became `/`, Jest became Vitest, and the
   CRA `eslintConfig` became `eslint.config.js`.
+- **`@types/node` is on 24, not the latest 26.** It follows the Node version
+  in `engines` and the Docker image; newer typings describe APIs that Node 24
+  does not have.
 - **TypeScript is on 6.0, not 7.** `typescript-eslint` does not support the
   native TS 7 yet (its peer range is `typescript <6.1`). Move up when it does.
 - **Headless UI 2.** `Menu.Button`/`Menu.Items`/`Menu.Item` became
